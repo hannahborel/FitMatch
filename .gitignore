@@ -35,4 +35,28 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# Example app
 app-example
+
+# Cache directories
+.cache/
+.next/
+
+# IDE/Editor files
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+
+# Build output
+out/
+build/
+
+# Prettier/ESLint cache
+.prettiercache
+.eslintcache

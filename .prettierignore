@@ -7,3 +7,32 @@ build/
 
 # Ignore specific files
 package-lock.json
+
+# Expo-specific files
+.expo/
+web-build/
+
+# Native files
+android/
+ios/
+
+# IDE/Editor files
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+
+# Metro cache
+.metro-health-check*
