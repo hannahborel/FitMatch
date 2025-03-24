@@ -1,6 +1,7 @@
 import { View } from 'react-native';
 
 import LoginScreen from './screens/auth/LoginScreen';
+import { CreateAccountScreen } from './screens/auth/CreateAccountScreen';
 
 export default function Index() {
   return (
@@ -11,7 +12,8 @@ export default function Index() {
         alignItems: 'center',
       }}
     >
-      <LoginScreen />
+      {/* <LoginScreen /> */}
+      <CreateAccountScreen />
     </View>
   );
 }
