@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+# Exclude the backup folder
+app-example/
+
 # Expo
 .expo/
 dist/

@@ -2,7 +2,14 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "lib": ["es2017", "es7", "es6", "es5", "dom", "es2015.promise"],
+    "lib": [
+      "es2017",
+      "es7",
+      "es6",
+      "es5",
+      "dom",
+      "es2015.promise"
+    ],
     "allowJs": true,
     "jsx": "react-native",
     "noEmit": true,
@@ -10,14 +17,24 @@
     "strict": true,
     "moduleResolution": "node",
     "baseUrl": "./",
-   "paths": {
-      "@/*": ["./*"]
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "extends": "expo/tsconfig.base"
 }
