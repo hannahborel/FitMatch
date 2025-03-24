@@ -9,12 +9,14 @@ import {
   useColorScheme,
   Dimensions,
 } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import EmailInput from '../../components/auth/EmailInput';
 import PasswordInput from '../../components/auth/PasswordInput';
 import { FormValues } from '../../types/auth';
+import { Link, useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 const INPUT_WIDTH = width - 40; // Full width minus padding
@@ -31,7 +33,17 @@ const defaultValues: FormValues = {
   password: '',
 };
 
-export const LoginScreen: React.FC = () => {
+type RootStackParamList = {
+  Login: undefined;
+  CreateAccount: undefined;
+};
+
+type LoginScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
+};
+
+export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
+  const router = useRouter();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
 
@@ -119,9 +131,9 @@ export const LoginScreen: React.FC = () => {
 
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Don't have an account? </Text>
-          <TouchableOpacity onPress={() => console.log('Sign up')}>
-            <Text style={styles.signupLink}>Sign Up</Text>
-          </TouchableOpacity>
+          <Link href={'/screens/auth/CreateAccount' as any} style={styles.signupLink}>
+            Sign Up
+          </Link>
         </View>
       </View>
     </KeyboardAvoidingView>

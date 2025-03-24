@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { AuthHeader } from '../../components/auth/AuthHeader';
 import { AuthInput } from '../../components/auth/AuthInput';
 import { AuthFooter } from '../../components/auth/AuthFooter';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 const INPUT_WIDTH = (width - 10) * 0.7;
@@ -32,8 +33,8 @@ const defaultValues: CreateAccountFormValues = {
   email: '',
   password: '',
 };
-
-export const CreateAccountScreen: React.FC = () => {
+const CreateAccountScreen: React.FC = () => {
+  const router = useRouter();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const [showPassword, setShowPassword] = useState(false);
@@ -82,7 +83,7 @@ export const CreateAccountScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <AuthHeader title="CREATE ACCOUNT" onCancel={() => console.log('Cancel pressed')} />
+      <AuthHeader title="CREATE ACCOUNT" onCancel={() => router.back()} />
       <View style={styles.formContent}>
         <View>
           <AuthInput control={control} name="firstName" placeholder="First Name" />
@@ -118,9 +119,10 @@ export const CreateAccountScreen: React.FC = () => {
           onButtonPress={handleSubmit(onSubmit)}
           linkText="Already have an account?"
           linkActionText="Log In"
-          onLinkPress={() => console.log('Log in pressed')}
+          onLinkPress={() => router.navigate('/screens/auth/Login' as any)}
         />
       </View>
     </View>
   );
 };
+export default CreateAccountScreen;
