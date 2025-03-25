@@ -9,17 +9,16 @@ import {
   useColorScheme,
   Dimensions,
 } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import EmailInput from '../../components/auth/EmailInput';
 import PasswordInput from '../../components/auth/PasswordInput';
 import { FormValues } from '../../types/auth';
-import { Link, useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
-const INPUT_WIDTH = width - 40; // Full width minus padding
+const INPUT_WIDTH = width - 40;
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Please enter a valid email').required('Email is required'),
@@ -33,16 +32,7 @@ const defaultValues: FormValues = {
   password: '',
 };
 
-type RootStackParamList = {
-  Login: undefined;
-  CreateAccount: undefined;
-};
-
-type LoginScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
-};
-
-export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
+const Login = () => {
   const router = useRouter();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
@@ -122,7 +112,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
           <PasswordInput control={control} name="password" />
 
           <TouchableOpacity
-            onPress={() => console.log('Forgot password')}
+            onPress={() => router.push('forgot-password' as any)}
             style={styles.forgotPassword}
           >
             <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
@@ -131,12 +121,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
 
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Don't have an account? </Text>
-          <Link href={'/screens/auth/CreateAccount' as any} style={styles.signupLink}>
-            Sign Up
-          </Link>
+          <TouchableOpacity onPress={() => router.push('create-account' as any)}>
+            <Text style={styles.signupLink}>Sign Up</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </KeyboardAvoidingView>
   );
 };
-export default LoginScreen;
+
+export default Login;

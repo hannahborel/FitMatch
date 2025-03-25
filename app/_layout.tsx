@@ -1,8 +1,7 @@
-import { FlatESLint } from 'eslint/use-at-your-own-risk';
 import { Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
 
-export default function Layout() {
+const Layout = () => {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
 
@@ -32,4 +31,6 @@ export default function Layout() {
       />
     </Stack>
   );
-}
+};
+
+export default Layout;

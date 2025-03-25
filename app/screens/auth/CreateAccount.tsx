@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, useColorScheme, Dimensions } from 'react-native';
+import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { AuthHeader } from '../../components/auth/AuthHeader';
 import { AuthInput } from '../../components/auth/AuthInput';
 import { AuthFooter } from '../../components/auth/AuthFooter';
-import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 const INPUT_WIDTH = (width - 10) * 0.7;
@@ -33,7 +33,8 @@ const defaultValues: CreateAccountFormValues = {
   email: '',
   password: '',
 };
-const CreateAccountScreen: React.FC = () => {
+
+const CreateAccount = () => {
   const router = useRouter();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
@@ -87,9 +88,7 @@ const CreateAccountScreen: React.FC = () => {
       <View style={styles.formContent}>
         <View>
           <AuthInput control={control} name="firstName" placeholder="First Name" />
-
           <AuthInput control={control} name="lastName" placeholder="Last Name" />
-
           <AuthInput
             control={control}
             name="email"
@@ -97,7 +96,6 @@ const CreateAccountScreen: React.FC = () => {
             keyboardType="email-address"
             autoCapitalize="none"
           />
-
           <AuthInput
             control={control}
             name="password"
@@ -119,10 +117,11 @@ const CreateAccountScreen: React.FC = () => {
           onButtonPress={handleSubmit(onSubmit)}
           linkText="Already have an account?"
           linkActionText="Log In"
-          onLinkPress={() => router.navigate('/screens/auth/Login' as any)}
+          onLinkPress={() => router.push('login' as any)}
         />
       </View>
     </View>
   );
 };
-export default CreateAccountScreen;
+
+export default CreateAccount;
